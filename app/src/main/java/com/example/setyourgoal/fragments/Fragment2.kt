@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.setyourgoal.R
+import com.example.setyourgoal.databinding.Fragment2Binding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +22,9 @@ class Fragment2 : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    /////
+
+    private lateinit var fragment2Binding: Fragment2Binding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,8 +38,9 @@ class Fragment2 : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_2, container, false)
+        fragment2Binding = Fragment2Binding.inflate(inflater, container, false)
+        val view = fragment2Binding.root
+        return view
     }
 
     companion object {

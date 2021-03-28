@@ -4,5 +4,7 @@
     <string name="tab_text_2">Timer</string>
     <string name="tab_text_3">Statistics</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="TextFrag1">Hello You are in first Section</string>
+    <string name="TextFrag2">Hello You are in second Section</string>
+    <string name="TextFrag3">Hello You are in third Section</string>
 </resources>

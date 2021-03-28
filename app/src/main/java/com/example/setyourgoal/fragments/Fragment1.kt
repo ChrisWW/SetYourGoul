@@ -1,11 +1,13 @@
 package com.example.setyourgoal.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Chronometer
+import androidx.fragment.app.Fragment
 import com.example.setyourgoal.R
+import com.example.setyourgoal.databinding.Fragment1Binding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +23,12 @@ class Fragment1 : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+/////////////////
+    private lateinit var fragment1Binding: Fragment1Binding
+
+    private val chronometer: Chronometer? = null
+    private val running: Boolean = true
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,8 +42,9 @@ class Fragment1 : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_1, container, false)
+        fragment1Binding = Fragment1Binding.inflate(inflater, container, false)
+        val view = fragment1Binding.root
+        return view
     }
 
     companion object {
