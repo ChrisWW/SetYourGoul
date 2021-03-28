@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">SetYourGoal</string>
+    <string name="tab_text_1">SetYourGoal</string>
+    <string name="tab_text_2">Timer</string>
+    <string name="tab_text_3">Statistics</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
