@@ -1,11 +1,14 @@
 package com.example.setyourgoal.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.os.SystemClock
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.setyourgoal.R
+import android.widget.Chronometer
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import com.example.setyourgoal.MainActivity
 import com.example.setyourgoal.databinding.Fragment2Binding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -26,6 +29,10 @@ class Fragment2 : Fragment() {
 
     private lateinit var fragment2Binding: Fragment2Binding
 
+    private var chronometer: Chronometer? = null
+    private var pauseOffset: Long? = null
+    private var running: Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -35,11 +42,57 @@ class Fragment2 : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         fragment2Binding = Fragment2Binding.inflate(inflater, container, false)
         val view = fragment2Binding.root
+        var chronometer: Chronometer? = fragment2Binding.chronometer
+
+
+        //define first initalization
+        chronometer!!.stop()
+        pauseOffset = SystemClock.elapsedRealtime() - chronometer.base
+        running = false
+        chronometer!!.format = "Time: %s"
+        chronometer?.start()
+        chronometer?.setBase(SystemClock.elapsedRealtime())
+        pauseOffset = 0
+        chronometer!!.stop()
+
+        chronometer.setOnChronometerTickListener {
+            fun onChronometerTick(chronometer: Chronometer? = fragment2Binding.chronometer) {
+                if (SystemClock.elapsedRealtime() - chronometer!!.base >= 10000) {
+                    chronometer.base = SystemClock.elapsedRealtime()
+                    val toast = Toast.makeText(activity, "Bing!", Toast.LENGTH_SHORT).show()
+
+                }
+            }
+        }
+
+        fragment2Binding.btFrag2Start.setOnClickListener {
+
+            if (!running) {
+                chronometer?.setBase(SystemClock.elapsedRealtime() - pauseOffset!!)
+                chronometer?.start()
+                running = true
+                }
+            }
+
+            fragment2Binding.btFrag2Stop.setOnClickListener {
+
+                if (running) {
+                    chronometer!!.stop()
+                    pauseOffset = SystemClock.elapsedRealtime() - chronometer.base
+                    running = false
+                }
+            }
+                fragment2Binding.btFrag2Reset.setOnClickListener {
+                    chronometer?.setBase(SystemClock.elapsedRealtime())
+                    pauseOffset = 0
+                }
+
+
         return view
     }
 
